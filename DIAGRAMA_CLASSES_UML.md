@@ -187,11 +187,11 @@ classDiagram
 
 ## Relacionamentos
 
-- **User ↔ Specialization**: Muitos usuários podem ter uma especialização (Many-to-One)
-- **Doctor ↔ Specialization**: Muitos médicos podem ter uma especialização (Many-to-One)
-- **Appointment ↔ Doctor**: Muitos agendamentos podem pertencer a um médico (Many-to-One)
-- **Appointment ↔ Patient**: Muitos agendamentos podem pertencer a um paciente (Many-to-One)
-- **User ↔ UserType**: Cada usuário tem um tipo específico (One-to-One)
+- **User <--> Specialization**: Muitos usuários podem ter uma especialização (Many-to-One)
+- **Doctor <--> Specialization**: Muitos médicos podem ter uma especialização (Many-to-One)
+- **Appointment <--> Doctor**: Muitos agendamentos podem pertencer a um médico (Many-to-One)
+- **Appointment <--> Patient**: Muitos agendamentos podem pertencer a um paciente (Many-to-One)
+- **User <--> UserType**: Cada usuário tem um tipo específico (One-to-One)
 
 ## Observações
 
