@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Especialidades</title>
+  <link rel="stylesheet" href="/css/styleEspecialidades.css">
+  <link rel="stylesheet" href="/css/sideBar.css">
+  <script src="/js/api.js" defer></script>
+</head>
+<body>
+    <div class="sidebar">
+      <img src="/logo/sinopng.png" alt="Sino" class="sidebar-icon">
+      <a href="/calendario"><img src="/logo/calendariopng.png" alt="Calendário" class="sidebar-icon"></a>
+    </div>
+    <div class="container_pagina_especialidades">
+      <div class="pagina_especialidades">
+        <h1 class="pagina_especialidades_titulo">Olá <span id="userName">Julia Lopes</span></h1>
+        <h3 class="pagina_especialidades_subtitulo">
+          Selecione a especialidade na qual você deseja realizar sua consulta.
+        </h3>
+
+        <div class="especialidades_opcoes">
+          <div class="especialidade_container" onclick="loadSpecialty(3)">
+            <img src="/logo/coracao.png" class="icone_especialidade" />
+            <br>
+            <span>Cardiologia</span>
+          </div>
+          <div class="especialidade_container" onclick="loadSpecialty(4)">
+            <img src="/logo/cerebro.png" class="icone_especialidade" />
+            <br>
+            <span>Neurologia</span>
+          </div>
+          <div class="especialidade_container" onclick="loadSpecialty(1)">
+            <img src="/logo/mulher.png" class="icone_especialidade" />
+            <br>
+            <span>Ginecologia</span>
+          </div>
+          <div class="especialidade_container" onclick="loadSpecialty(2)">
+            <img src="/logo/osso.png" class="icone_especialidade" />
+            <br>
+            <span>Ortopedia</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+        // Função para carregar médicos de uma especialidade
+        async function loadSpecialty(specializationId) {
+            // Salvar a especialidade selecionada
+            localStorage.setItem('selectedSpecialty', specializationId);
+            
+            // Redirecionar para a página de médicos da especialidade
+            switch(specializationId) {
+                case 1:
+                    onclick="window.location.href = 'cardiologistainform.html'"
+                    break;
+                case 2:
+                    onclick="window.location.href = 'neurologistainform.html'"
+                    break;
+                case 3:
+                    onclick="window.location.href = 'ginecologistainform.html"
+                    break;
+                case 4:
+                    onclick="window.location.href = 'ortopediainform.html"
+                    break;
+                default:
+                    console.error('Especialidade não encontrada');
+            }
+        }
+
+        // Carregar nome do usuário
+        document.addEventListener('DOMContentLoaded', () => {
+            const patientId = localStorage.getItem('patientId');
+            const userName = localStorage.getItem('userName');
+            if (userName) {
+                document.getElementById('userName').textContent = userName;
+            }
+        });
+    </script>
+</body>
+</html>

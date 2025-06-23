@@ -1,0 +1,149 @@
+@startuml MedTime_Class_Diagram
+
+!define ENTITY class
+!define DTO class
+!define ENUM enum
+
+' Enumerações
+ENUM UserType {
+    PATIENT
+    DOCTOR
+}
+
+' Entidades Principais
+ENTITY User {
+    -Long id
+    -String name
+    -String email
+    -String password
+    -UserType userType
+    -String crm
+    -String photoUrl
+    -Specialization specialization
+    --
+    +User(name: String, email: String, password: String)
+    +User(name: String, email: String, password: String, crm: String, specialization: Specialization)
+    +User(name: String, email: String, password: String, crm: String, specialization: Specialization, photoUrl: String)
+    +User()
+    +getId(): Long
+    +setId(id: Long): void
+    +getName(): String
+    +setName(name: String): void
+    +getEmail(): String
+    +setEmail(email: String): void
+    +getPassword(): String
+    +setPassword(password: String): void
+    +getUserType(): UserType
+    +setUserType(userType: UserType): void
+    +getCrm(): String
+    +setCrm(crm: String): void
+    +getSpecialization(): Specialization
+    +setSpecialization(specialization: Specialization): void
+    +getPhotoUrl(): String
+    +setPhotoUrl(photoUrl: String): void
+}
+
+ENTITY Specialization {
+    -Long id
+    -String name
+    -String description
+    --
+    +Specialization(name: String)
+    +Specialization()
+    +getId(): Long
+    +setId(id: Long): void
+    +getName(): String
+    +setName(name: String): void
+}
+
+ENTITY Doctor {
+    -Long id
+    -String name
+    -String crm
+    -String email
+    -String description
+    -String photo_url
+    -Specialization specialization
+}
+
+ENTITY Patient {
+    -Long id
+    -String name
+    -String email
+    -String phone
+    -String cpf
+}
+
+ENTITY Appointment {
+    -Long id
+    -Doctor doctor
+    -Patient patient
+    -LocalDateTime appointmentDateTime
+    -String status
+    --
+    +Appointment()
+    +Appointment(patient: Patient, doctor: Doctor, appointmentDateTime: LocalDateTime)
+    +getId(): Long
+    +setId(id: Long): void
+    +getPatient(): Patient
+    +setPatient(patient: Patient): void
+    +getDoctor(): Doctor
+    +setDoctor(doctor: Doctor): void
+    +getAppointmentDateTime(): LocalDateTime
+    +setAppointmentDateTime(appointmentDateTime: LocalDateTime): void
+    +getStatus(): String
+    +setStatus(status: String): void
+}
+
+' DTOs
+DTO UserDTO {
+    -Long id
+    -String name
+    -String email
+    -String password
+}
+
+DTO DoctorDTO {
+    -Long id
+    -String name
+    -String email
+    -String password
+    -String crm
+    -Long specializationId
+    -String photo_url
+}
+
+DTO AppointmentDTO {
+    -Long doctorId
+    -LocalDateTime appointmentDateTime
+}
+
+DTO AppointmentRequest {
+    -Long doctorId
+    -LocalDateTime appointmentDateTime
+}
+
+' Relacionamentos
+User ||--o{ Specialization : "has"
+Doctor ||--o{ Specialization : "has"
+Appointment ||--o{ Doctor : "has"
+Appointment ||--o{ Patient : "has"
+User ||--o{ UserType : "has"
+
+' Notas explicativas
+note right of User
+  Classe principal que representa
+  usuários do sistema (médicos e pacientes)
+end note
+
+note right of Appointment
+  Representa agendamentos de consultas
+  entre médicos e pacientes
+end note
+
+note right of Specialization
+  Representa as especialidades médicas
+  disponíveis no sistema
+end note
+
+@enduml 

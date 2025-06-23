@@ -1,0 +1,123 @@
+.calendario-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.calendario-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendario-header button {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #2c3e50;
+    padding: 5px 10px;
+}
+
+.calendario-header button:hover {
+    color: #3498db;
+}
+
+.calendario-header h2 {
+    color: #2c3e50;
+    font-size: 1.5em;
+}
+
+.calendario-grid {
+    width: 100%;
+}
+
+.calendario-dias-semana {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-weight: bold;
+    color: #7f8c8d;
+    margin-bottom: 10px;
+}
+
+.calendario-dias {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.calendario-dia {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.calendario-dia:hover {
+    background-color: #f0f0f0;
+}
+
+.calendario-dia.selected {
+    background-color: #3498db;
+    color: white;
+}
+
+.calendario-dia.available {
+    border: 2px solid #2ecc71;
+}
+
+.calendario-dia.unavailable {
+    color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+.horarios-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.horarios-container h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.horarios-disponiveis {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+}
+
+.horarios-disponiveis button {
+    padding: 10px;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+    background: none;
+    color: #3498db;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.horarios-disponiveis button:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+.horarios-disponiveis button.unavailable {
+    border-color: #bdc3c7;
+    color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+.horarios-disponiveis button.unavailable:hover {
+    background: none;
+    color: #bdc3c7;
+} 

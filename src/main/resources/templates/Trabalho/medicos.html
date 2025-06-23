@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Médicos</title>
+  <link rel="stylesheet" href="/css/styleEspecialidades.css" />
+  <link rel="stylesheet" href="/css/sideBar.css" />
+  <script src="/js/api.js" defer></script>
+  <style>
+    body {
+      background: #a3d9db;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    .container_pagina_inform {
+      background: #f3f4f2;
+      border-radius: 24px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      max-width: 1200px;
+      margin: 48px auto 0 auto;
+      padding: 32px 32px 48px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .pagina_especialidades_titulo {
+      color: #21706e;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .pagina_especialidades_subtitulo {
+      color: #555;
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      text-align: center;
+      max-width: 500px;
+    }
+    .especialidades_opcoes {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+    .card_medico {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 280px;
+      min-height: 320px;
+      transition: all 0.3s ease;
+      margin-bottom: 0;
+      text-align: center;
+      cursor: pointer;
+    }
+    .card_medico:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+    .foto_medico {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      border: 4px solid #f0f0f0;
+    }
+    .nome_medico {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 8px;
+      text-align: center;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .card_separator {
+      width: 40px;
+      height: 2px;
+      background: #e0e0e0;
+      border-radius: 2px;
+      margin: 8px 0 10px 0;
+    }
+    .especialidade {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #555;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .medico_descricao {
+        font-size: 0.9rem;
+        color: #777;
+        line-height: 1.5;
+        min-height: 45px;
+    }
+    .crm_medico {
+      font-size: 0.98rem;
+      color: #888;
+      margin-bottom: 0;
+      text-align: center;
+      font-style: italic;
+      font-weight: 500;
+    }
+    .ver-agenda-btn {
+      display: inline-block;
+      background-color: #21706e;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: auto;
+      border: 2px solid transparent;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+    .ver-agenda-btn:hover {
+      background-color: #fff;
+      color: #21706e;
+      border-color: #21706e;
+    }
+    .botoes-container {
+      display: flex;
+      gap: 10px;
+      margin-top: auto;
+    }
+    .ver-detalhes-btn {
+      display: inline-block;
+      background-color: #555;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      border: 2px solid transparent;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+    .ver-detalhes-btn:hover {
+      background-color: #fff;
+      color: #555;
+      border-color: #555;
+    }
+  </style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="/especialidades.html"><img src="/logo/sinopng.png" alt="Sino" class="sidebar-icon"></a>
+        <a href="/meus-agendamentos"><img src="/logo/calendariopng.png" alt="Calendário" class="sidebar-icon"></a>
+    </div> 
+    
+    <div class="container_pagina_inform">
+      <h1 class="pagina_especialidades_titulo" id="specialtyTitle">Médicos</h1>
+      <p class="pagina_especialidades_subtitulo">Selecione um médico para visualizar as datas disponíveis de consulta.</p>
+
+      <div class="especialidades_opcoes" id="doctorsList">
+        <!-- Os médicos serão inseridos aqui via JavaScript -->
+      </div>
+    </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const specializationId = localStorage.getItem('selectedSpecialty');
+        if (!specializationId) {
+            window.location.href = '/especialidades';
+            return;
+        }
+
+        // Definir o título da página baseado na URL atual
+        const currentPath = window.location.pathname;
+        let pageTitle = '';
+        
+        switch(currentPath) {
+            case '/cardiologista':
+                pageTitle = 'Cardiologistas';
+                break;
+            case '/neurologista':
+                pageTitle = 'Neurologistas';
+                break;
+            case '/ginecologista':
+                pageTitle = 'Ginecologistas';
+                break;
+            case '/ortopedia':
+                pageTitle = 'Ortopedistas';
+                break;
+            default:
+                pageTitle = 'Médicos';
+        }
+        
+        document.getElementById('specialtyTitle').textContent = pageTitle;
+        document.title = pageTitle; // Atualiza também o título da aba do navegador
+
+        // Carregar os médicos
+        await loadDoctors(specializationId);
+    });
+
+    // Exemplo de função para renderizar os cards dos médicos (substitua pelo seu fetch real)
+    async function loadDoctors(specializationId) {
+      // Buscar dados reais do backend
+      let doctors = [];
+      if (typeof getDoctorsBySpecialization === 'function') {
+        doctors = await getDoctorsBySpecialization(specializationId);
+      }
+      const doctorsList = document.getElementById('doctorsList');
+      doctorsList.innerHTML = '';
+      if (!doctors || doctors.length === 0) {
+        doctorsList.innerHTML = '<p>Nenhum médico disponível para esta especialidade.</p>';
+        return;
+      }
+      doctors.forEach(doc => {
+        const card = document.createElement('div');
+        card.className = 'card_medico';
+        card.onclick = (event) => {
+            // Evita que o clique no card inteiro faça algo se o alvo for um botão
+            if (event.target.tagName !== 'A') {
+                // Aqui você pode definir uma ação padrão para o card, se desejar,
+                // ou simplesmente não fazer nada.
+                console.log('Card clicado, mas nenhum botão acionado.');
+            }
+        };
+
+        let especialidade = doc.specialization ? (doc.specialization.name || doc.specialization) : (doc.especialidade || '');
+        let descricao = '';
+
+        // Mock de descrições baseado no nome para fins de UI
+        if (doc.name && doc.name.toLowerCase().includes('lucas')) {
+            descricao = 'Especialista em hipertensão e insuficiência cardíaca.';
+        } else if (doc.name && doc.name.toLowerCase().includes('beatriz')) {
+            especialidade = 'Cardiologia e Medicina Preventiva';
+            descricao = 'Foco em prevenção e qualidade de vida.';
+        } else if (doc.name && doc.name.toLowerCase().includes('rafael')) {
+            especialidade = 'Cardiologia Intervencionista';
+            descricao = 'Atua com cateterismo e emergências cardíacas.';
+        }
+
+        card.innerHTML = `
+          <img src="${doc.photo_url || '/logo/logo.png'}" alt="Foto de ${doc.name || doc.nome}" class="foto_medico" />
+          <div class="nome_medico">${doc.name || doc.nome}</div>
+          <div class="especialidade">${especialidade}</div>
+          <div class="medico_descricao">${descricao}</div>
+          <div class="botoes-container">
+            <a href="#" class="ver-agenda-btn" onclick="showCalendar(${doc.id})">Ver agenda</a>
+            <a href="#" class="ver-detalhes-btn" onclick="showDetails(${doc.id})">Ver Detalhes</a>
+          </div>
+        `;
+        doctorsList.appendChild(card);
+      });
+    }
+  </script>
+</body>
+</html> 

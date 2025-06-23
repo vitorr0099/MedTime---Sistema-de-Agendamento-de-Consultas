@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Ginecologista</title>
+    <link rel="stylesheet" href="css/styleInform.css">
+    <link rel="stylesheet" href="css/sideBar.css">
+</head>
+<body>
+    <div class="sidebar">
+        <a href="/especialidades.html"><img src="logo/sinopng.png" alt="Sino" class="sidebar-icon"></a>
+        <a href="/meus-agendamentos"><img src="logo/calendariopng.png" alt="Calendário" class="sidebar-icon"></a>
+    </div> 
+    <div class="container_pagina_inform">
+        <div class="pagina_inform">
+            <h1 class="pagina_inform_titulo">Neurologia</h1>
+
+            <p>Neurologia é a especialidade médica que cuida do diagnóstico e tratamento de 
+            doenças do sistema nervoso central e periférico. O neurologista é o médico 
+            responsável por tratar distúrbios como epilepsia, doenças de nervos cranianos, 
+            paralisia cerebral, doenças de mielina, doenças de nervos periféricos, entre outras. 
+            A atuação desse profissional é essencial para o tratamento de doenças que afetam o 
+            sistema nervoso, garantindo a saúde e a qualidade de vida dos pacientes.</p>
+            <br>
+            <p>A atuação do neurologista é essencial para o tratamento de doenças que afetam o 
+            sistema nervoso, garantindo a saúde e a qualidade de vida dos pacientes.</p>
+
+            <button class="btn_consulta" onclick="loadSpecialty(2)">Agendar Consulta</button>
+            <script>
+                function loadSpecialty(specialtyId) {
+                    window.location.href = '/neurologista';
+                }
+            </script>
+        </div>
+    </div>
+</body>
+</html>

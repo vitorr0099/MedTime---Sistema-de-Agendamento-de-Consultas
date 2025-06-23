@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Especialidades - MedTime</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styleEspecialidades.css">
+</head>
+<body>
+    <div class="layout-geral">
+        <!-- MENU LATERAL -->
+        <div class="menu-lateral">
+            <img src="logo/logo.png" alt="Logo MedTime" />
+            <img src="logo/notification.png" alt="Sino" />
+            <img src="logo/calendar.png" alt="Calendário" />
+        </div>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <div class="container_pagina_inform">
+            <h1 class="pagina_especialidades_titulo">Especialidades</h1>
+            <p class="pagina_especialidades_subtitulo">Selecione uma especialidade para ver os médicos disponíveis.</p>
+
+            <div class="especialidades_opcoes">
+                <div class="especialidade_container" onclick="navigateToSpecialization('cardiology')">
+                    <img src="logo/cardiology.png" alt="Cardiologia" class="icone_especialidade" />
+                    <span>CARDIOLOGIA</span>
+                    <p>Especialistas em doenças do coração e sistema cardiovascular.</p>
+                </div>
+
+                <div class="especialidade_container" onclick="navigateToSpecialization('neurology')">
+                    <img src="logo/neurology.png" alt="Neurologia" class="icone_especialidade" />
+                    <span>NEUROLOGIA</span>
+                    <p>Especialistas em doenças do sistema nervoso.</p>
+                </div>
+
+                <div class="especialidade_container" onclick="navigateToSpecialization('orthopedics')">
+                    <img src="logo/orthopedics.png" alt="Ortopedia" class="icone_especialidade" />
+                    <span>ORTOPEDIA</span>
+                    <p>Especialistas em doenças e lesões dos ossos e articulações.</p>
+                </div>
+
+                <div class="especialidade_container" onclick="navigateToSpecialization('gynecology')">
+                    <img src="logo/gynecology.png" alt="Ginecologia" class="icone_especialidade" />
+                    <span>GINECOLOGIA</span>
+                    <p>Especialistas em saúde da mulher.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/api.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html> 

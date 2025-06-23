@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+body {
+  background: #a3d9db;
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 48px;
+}
+
+.container_pagina_inform {
+  background: #f3f4f2;
+  border-radius: 24px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  max-width: 1200px;
+  padding: 32px 32px 48px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pagina_especialidades_titulo {
+  color: #21706e;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.pagina_especialidades_subtitulo {
+  color: #555;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+  text-align: center;
+  max-width: 500px;
+}
+
+.especialidades_opcoes {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.card_medico {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 280px;
+  min-height: 320px;
+  transition: all 0.3s ease;
+  margin-bottom: 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+.card_medico:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.foto_medico {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  border: 4px solid #f0f0f0;
+}
+
+.nome_medico {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 8px;
+  text-align: center;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.card_separator {
+  width: 40px;
+  height: 2px;
+  background: #e0e0e0;
+  border-radius: 2px;
+  margin: 8px 0 10px 0;
+}
+
+.especialidade {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #555;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.medico_descricao {
+  font-size: 0.9rem;
+  color: #777;
+  line-height: 1.5;
+  min-height: 45px;
+}
+
+.crm_medico {
+  font-size: 0.98rem;
+  color: #888;
+  margin-bottom: 0;
+  text-align: center;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.ver-agenda-btn {
+  display: inline-block;
+  background-color: #21706e;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: auto;
+  border: 2px solid transparent;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.ver-agenda-btn:hover {
+  background-color: #fff;
+  color: #21706e;
+  border-color: #21706e;
+}
+
+.botoes-container {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.ver-detalhes-btn {
+  display: inline-block;
+  background-color: #555;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  border: 2px solid transparent;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.ver-detalhes-btn:hover {
+  background-color: #fff;
+  color: #555;
+  border-color: #555;
+}
+
+@media (max-width: 950px) {
+  .container_pagina_inform {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .medicos_lista {
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .card_medico {
+    width: 45%;
+  }
+}
+
+@media (max-width: 600px) {
+  .card_medico {
+    width: 100%;
+  }
+
+  .pagina_especialidades_titulo {
+    font-size: 24px;
+  }
+
+  .pagina_especialidades_subtitulo {
+    font-size: 16px;
+  }
+}

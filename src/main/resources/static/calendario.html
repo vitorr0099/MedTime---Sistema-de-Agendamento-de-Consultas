@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário - MedTime</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/calendario.css">
+</head>
+<body>
+    <div class="layout-geral">
+        <!-- MENU LATERAL -->
+        <div class="menu-lateral">
+            <img src="logo/logo.png" alt="Logo MedTime" />
+            <img src="logo/notification.png" alt="Sino" />
+            <img src="logo/calendar.png" alt="Calendário" />
+        </div>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <div class="container_pagina_inform">
+            <h1 class="pagina_especialidades_titulo">Agendar Consulta</h1>
+            <p class="pagina_especialidades_subtitulo">Selecione uma data e horário disponível para sua consulta.</p>
+
+            <div class="calendario-container">
+                <div class="calendario-header">
+                    <button id="prevMonth">&lt;</button>
+                    <h2 id="currentMonth">Janeiro 2024</h2>
+                    <button id="nextMonth">&gt;</button>
+                </div>
+                <div class="calendario-grid">
+                    <div class="calendario-dias-semana">
+                        <span>Dom</span>
+                        <span>Seg</span>
+                        <span>Ter</span>
+                        <span>Qua</span>
+                        <span>Qui</span>
+                        <span>Sex</span>
+                        <span>Sáb</span>
+                    </div>
+                    <div id="calendario-dias" class="calendario-dias">
+                        <!-- Dias serão inseridos via JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="horarios-container">
+                <h3>Horários Disponíveis</h3>
+                <div class="horarios-disponiveis">
+                    <!-- Horários serão inseridos via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/api.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/calendario.js"></script>
+</body>
+</html> 

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Agendamentos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #a3d9db;
+            margin: 0;
+            padding: 40px;
+        }
+        .container {
+            background: #f3f4f2;
+            border-radius: 24px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            padding: 40px;
+            max-width: 900px;
+            margin: auto;
+        }
+        h1 {
+            color: #21706e;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .appointment-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid #21706e;
+            position: relative;
+        }
+        .appointment-card.cancelled {
+            border-left-color: #dc3545;
+            opacity: 0.7;
+        }
+        .appointment-card p {
+            margin: 0 0 10px;
+            color: #555;
+        }
+        .appointment-card strong {
+            color: #333;
+        }
+        .status-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .status-scheduled {
+            background-color: #28a745;
+            color: white;
+        }
+        .status-cancelled {
+            background-color: #dc3545;
+            color: white;
+        }
+        .status-completed {
+            background-color: #17a2b8;
+            color: white;
+        }
+        .cancel-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .cancel-btn:hover {
+            background-color: #c82333;
+        }
+        .cancel-btn:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+        .cancel-btn:disabled:hover {
+            background-color: #6c757d;
+        }
+        .warning-text {
+            color: #856404;
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+        #voltar-btn {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #21706e;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .loading {
+            text-align: center;
+            color: #666;
+        }
+        .error {
+            color: #dc3545;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Meus Agendamentos</h1>
+        <div id="appointmentsList">
+            <p class="loading">Carregando seus agendamentos...</p>
+        </div>
+        <a href="/especialidades.html" id="voltar-btn">Voltar</a>
+    </div>
+
+    <script>
+        async function getPatientAppointments(patientId) {
+            try {
+                const response = await fetch(`http://localhost:8080/api/appointments/patient/${patientId}`);
+                if (!response.ok) {
+                    throw new Error(`Erro na requisição: ${response.statusText}`);
+                }
+                return await response.json();
+            } catch (error) {
+                console.error('Erro ao buscar agendamentos:', error);
+                return [];
+            }
+        }
+
+        async function cancelAppointment(appointmentId) {
+            try {
+                const response = await fetch(`http://localhost:8080/api/appointments/${appointmentId}/cancel`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert('Agendamento cancelado com sucesso!');
+                    location.reload(); // Recarregar a página para atualizar a lista
+                } else {
+                    alert(`Erro ao cancelar agendamento: ${result.error}`);
+                }
+            } catch (error) {
+                console.error('Erro ao cancelar agendamento:', error);
+                alert('Erro ao cancelar agendamento. Por favor, tente novamente.');
+            }
+        }
+
+        function canCancelAppointment(appointmentDateTime) {
+            const now = new Date();
+            const appointmentTime = new Date(appointmentDateTime);
+            const cancellationDeadline = new Date(appointmentTime.getTime() - (24 * 60 * 60 * 1000)); // 24 horas antes
+            
+            return now < cancellationDeadline;
+        }
+
+        function formatStatus(status) {
+            switch(status) {
+                case 'SCHEDULED': return 'Agendado';
+                case 'CANCELLED': return 'Cancelado';
+                case 'COMPLETED': return 'Realizado';
+                default: return status;
+            }
+        }
+
+        function getStatusClass(status) {
+            switch(status) {
+                case 'SCHEDULED': return 'status-scheduled';
+                case 'CANCELLED': return 'status-cancelled';
+                case 'COMPLETED': return 'status-completed';
+                default: return '';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const patientId = localStorage.getItem('patientId');
+            const container = document.getElementById('appointmentsList');
+
+            if (!patientId) {
+                container.innerHTML = '<p class="error">Erro: Usuário não identificado. Faça login para ver seus agendamentos.</p>';
+                return;
+            }
+
+            const appointments = await getPatientAppointments(patientId);
+
+            if (appointments.length > 0) {
+                container.innerHTML = appointments.map(app => {
+                    const date = new Date(app.appointmentDateTime);
+                    const formattedDate = date.toLocaleDateString('pt-BR');
+                    const formattedTime = date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+                    const canCancel = app.status === 'SCHEDULED' && canCancelAppointment(app.appointmentDateTime);
+                    const isCancelled = app.status === 'CANCELLED';
+                    const isCompleted = app.status === 'COMPLETED';
+
+                    return `
+                        <div class="appointment-card ${isCancelled ? 'cancelled' : ''}">
+                            <span class="status-badge ${getStatusClass(app.status)}">${formatStatus(app.status)}</span>
+                            <p><strong>Médico(a):</strong> ${app.doctor.name}</p>
+                            <p><strong>Especialidade:</strong> ${app.doctor.specialization.name}</p>
+                            <p><strong>Data:</strong> ${formattedDate}</p>
+                            <p><strong>Hora:</strong> ${formattedTime}</p>
+                            
+                            ${app.status === 'SCHEDULED' ? `
+                                ${canCancel ? 
+                                    `<button class="cancel-btn" onclick="cancelAppointment(${app.id})">Cancelar Agendamento</button>` :
+                                    `<div class="warning-text">⚠️ Não é possível cancelar este agendamento. O prazo para cancelamento (24 horas antes da consulta) já expirou.</div>`
+                                }
+                            ` : ''}
+                            
+                            ${isCancelled ? '<p style="color: #dc3545; font-style: italic;">Este agendamento foi cancelado.</p>' : ''}
+                            ${isCompleted ? '<p style="color: #17a2b8; font-style: italic;">Esta consulta já foi realizada.</p>' : ''}
+                        </div>
+                    `;
+                }).join('');
+            } else {
+                container.innerHTML = '<p>Você ainda não possui nenhum agendamento.</p>';
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário</title>
+    <link rel="stylesheet" href="/css/calendario.css">
+    <link rel="stylesheet" href="/css/sideBar.css">
+    <script src="/js/calendario.js" defer></script>
+    <script src="/js/api.js" defer></script>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="/especialidades.html"><img src="/logo/sinopng.png" alt="Sino" class="sidebar-icon"></a>
+        <a href="/meus-agendamentos"><img src="/logo/calendariopng.png" alt="Calendário" class="sidebar-icon"></a>
+    </div> 
+    <div class="wrapper">
+        <header>
+            <p class="data-atual"></p>
+            <div class="icones">
+                <span id="anterior" class="simbolos">&lt</span>
+                <span id="proximo" class="simbolos">&gt</span>
+            </div>
+        </header>
+        <div class="calendario">
+            <ul class="semana">
+                <li>Dom</li>
+                <li>Seg</li>
+                <li>Ter</li>
+                <li>Qua</li>
+                <li>Qui</li>
+                <li>Sex</li>
+                <li>Sab</li>
+            </ul>
+            <ul class="dias">
+            </ul>
+        </div>
+        <div class="horarios-container">
+            <h3>Horários Disponíveis</h3>
+            <div class="horarios-disponiveis">
+                <!-- Os horários serão inseridos aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Inicializar o calendário quando a página carregar
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeCalendar();
+        });
+
+        // Quando um dia for clicado
+        document.querySelector('.dias').addEventListener('click', (e) => {
+            if (e.target.matches('li') && !e.target.classList.contains('inactive')) {
+                const selectedDate = new Date(
+                    currentYear,
+                    currentMonth,
+                    parseInt(e.target.textContent)
+                ).toISOString().split('T')[0];
+                loadAvailableSlots(selectedDate);
+            }
+        });
+    </script>
+</body>
+</html>
