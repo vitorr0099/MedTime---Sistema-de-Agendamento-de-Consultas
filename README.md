@@ -168,8 +168,8 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## 👥 Autores
 
-- Christyan Assolini e Julia Lopes - *Front-end* - [SeuGitHub]([https://github.com/seu-usuario](https://github.com/julial0pes))
-- Isabele Pires e Vitor Hugo Ramos - *Back-end* - [SeuGitHub]([https://github.com/vitorr0099))
+- Christyan Assolini e Julia Lopes - *Front-end* - https://github.com/julial0pes
+- Isabele Pires e Vitor Hugo Ramos - *Back-end* - https://github.com/vitorr0099
 
 ## 🙏 Agradecimentos
 
