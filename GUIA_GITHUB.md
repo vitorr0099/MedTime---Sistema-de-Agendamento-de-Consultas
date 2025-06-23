@@ -16,7 +16,7 @@ Primeiro, vamos inicializar o Git no seu projeto:
 
 ```bash
 # Navegar até a pasta do projeto
-cd "C:\Users\vitor\OneDrive\Documentos\projeto java\medTime_20250622 - Testes\medTime"
+cd "C:\Users\vitor\OneDrive\Documentos\projeto java\medTime_20250623\medTime"
 
 # Inicializar o repositório Git
 git init

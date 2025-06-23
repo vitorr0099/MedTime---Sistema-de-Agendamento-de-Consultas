@@ -122,15 +122,15 @@ classDiagram
     }
 
     %% Relacionamentos
-    User ||--o{ Specialization : has
-    Doctor ||--o{ Specialization : has
-    Appointment ||--o{ Doctor : has
-    Appointment ||--o{ Patient : has
-    User ||--o{ UserType : has
+    User o-- Specialization : has
+    Doctor o-- Specialization : has
+    Appointment o-- Doctor : has
+    Appointment o-- Patient : has
+    User o-- UserType : has
 
     %% Herança (se aplicável)
-    Doctor --|> User : extends
-    Patient --|> User : extends
+    Doctor <|-- User : extends
+    Patient <|-- User : extends
 ```
 
 ## Descrição das Classes

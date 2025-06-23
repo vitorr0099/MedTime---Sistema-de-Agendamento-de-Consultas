@@ -168,7 +168,8 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## 👥 Autores
 
-- **Seu Nome** - *Desenvolvimento inicial* - [SeuGitHub](https://github.com/seu-usuario)
+- Christyan Assolini e Julia Lopes - *Front-end* - https://github.com/julial0pes
+- Isabele Pires e Vitor Hugo Ramos - *Back-end* - https://github.com/vitorr0099
 
 ## 🙏 Agradecimentos
 
@@ -178,7 +179,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## 📞 Suporte
 
-Se você encontrar algum problema ou tiver dúvidas, abra uma [issue](https://github.com/seu-usuario/medTime/issues) no GitHub.
+Se você encontrar algum problema ou tiver dúvidas, abra uma [issue](https://github.com/vitorr0099/MedTime/issues) no GitHub.
 
 ---
 
