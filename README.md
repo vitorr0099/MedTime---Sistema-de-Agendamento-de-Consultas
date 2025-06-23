@@ -179,7 +179,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## 📞 Suporte
 
-Se você encontrar algum problema ou tiver dúvidas, abra uma [issue](https://github.com/seu-usuario/medTime/issues) no GitHub.
+Se você encontrar algum problema ou tiver dúvidas, abra uma [issue](https://github.com/vitorr0099/MedTime/issues) no GitHub.
 
 ---
 
