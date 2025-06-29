@@ -1,0 +1,84 @@
+@startuml Diagrama Entidade-Relacionamento - MedTime
+
+!define ENTITY class
+!define PK <<PK>>
+!define FK <<FK>>
+
+title Diagrama Entidade-Relacionamento - Sistema MedTime
+
+ENTITY USERS {
+  PK id : Long
+  --
+  name : String (NOT NULL)
+  email : String (NOT NULL, UNIQUE)
+  password : String (NOT NULL)
+  userType : UserType (NOT NULL)
+  crm : String
+  photoUrl : String
+  FK specialization_id : Long
+}
+
+ENTITY DOCTORS {
+  PK id : Long
+  --
+  name : String
+  crm : String
+  email : String
+  description : String
+  photo_url : String
+  FK specialization_id : Long
+}
+
+ENTITY PATIENTS {
+  PK id : Long
+  --
+  name : String
+  email : String
+  phone : String
+  cpf : String
+}
+
+ENTITY SPECIALIZATIONS {
+  PK id : Long
+  --
+  name : String (UNIQUE)
+  description : String
+}
+
+ENTITY APPOINTMENTS {
+  PK id : Long
+  --
+  appointmentDateTime : LocalDateTime
+  status : String
+  FK doctor_id : Long
+  FK patient_id : Long
+}
+
+' Relacionamentos
+USERS ||--o{ SPECIALIZATIONS : "N:1"
+DOCTORS ||--o{ SPECIALIZATIONS : "N:1"
+APPOINTMENTS }o--|| DOCTORS : "N:1"
+APPOINTMENTS }o--|| PATIENTS : "N:1"
+
+note right of USERS
+  userType pode ser:
+  - PATIENT
+  - DOCTOR
+  
+  crm e photoUrl são
+  apenas para DOCTOR
+end note
+
+note right of APPOINTMENTS
+  status pode ser:
+  - SCHEDULED
+  - COMPLETED
+  - CANCELLED
+end note
+
+note bottom of SPECIALIZATIONS
+  Uma especialidade pode
+  ter muitos médicos
+end note
+
+@enduml 
