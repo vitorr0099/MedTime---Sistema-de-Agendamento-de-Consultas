@@ -168,12 +168,12 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## 👥 Autores
 
-- Christyan Assolini e Julia Lopes - *Front-end* - https://github.com/julial0pes
-- Isabele Pires e Vitor Hugo Ramos - *Back-end* - https://github.com/vitorr0099
+- Christyan Assolini e Julia Lopes - *Front-end* - https://github.com/julial0pes e https://github.com/Christyassolini
+- Isabele Pires e Vitor Hugo Ramos - *Back-end* - https://github.com/IsabeleVPires e https://github.com/vitorr0099
 
 ## 🙏 Agradecimentos
 
-- Professor e colegas da disciplina
+- Professor Rogério dos Santos e colegas da disciplina
 - Comunidade Spring Boot
 - Contribuidores do projeto
 
