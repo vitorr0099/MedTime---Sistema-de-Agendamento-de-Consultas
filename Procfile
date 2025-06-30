@@ -1,0 +1,1 @@
+web: java -jar target/medTime-0.0.1-SNAPSHOT.jar 
