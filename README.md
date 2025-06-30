@@ -123,15 +123,6 @@ O projeto inclui diagramas UML detalhados:
 - [Diagrama PlantUML](diagrama_classes_plantuml.puml) - Formato profissional
 - [Guia dos Diagramas](README_DIAGRAMAS.md) - Instruções de uso
 
-## 🧪 Testes
-
-```bash
-# Executar todos os testes
-mvn test
-
-# Executar testes com cobertura
-mvn jacoco:report
-```
 
 ## 📝 API Endpoints
 
