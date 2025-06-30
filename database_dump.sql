@@ -101,7 +101,7 @@ CREATE TABLE `patients` (
 
 LOCK TABLES `patients` WRITE;
 /*!40000 ALTER TABLE `patients` DISABLE KEYS */;
-INSERT INTO `patients` VALUES (2,NULL,'vitor@gmail','Vitor',NULL),(3,NULL,'ivone@gmail','Ivone Pereira',NULL),(4,NULL,'tarcisio@gmail','Tarcisio ',NULL),(5,NULL,'teste@gmail','teste',NULL);
+INSERT INTO `patients` VALUES (2,NULL,'vitor@gmail','Vitor',NULL);
 /*!40000 ALTER TABLE `patients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,4 +177,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-06-29 22:55:23
+-- Dump completed on 2025-06-29 22:59:30
