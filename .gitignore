@@ -83,7 +83,7 @@ Desktop.ini
 
 # Application specific
 application-dev.properties
-application-prod.properties
+# application-prod.properties  # Comentado para permitir deploy
 *.env
 
 # Database
@@ -98,3 +98,8 @@ logs/
 # Temporary files
 *.tmp
 *.temp
+
+# Deploy files (opcional - você pode querer versionar estes)
+# Dockerfile
+# .dockerignore
+# render.yaml
